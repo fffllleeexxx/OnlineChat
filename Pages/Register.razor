@@ -1,0 +1,25 @@
+﻿@page "/registration"
+@inject NavigationManager NavigationManager
+
+<h3>Registration Page</h3>
+
+<div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" @bind="login" />
+</div>
+<div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" @bind="password" />
+</div>
+<button @onclick="RegisterMethod">Register</button>
+
+@code {
+    private string login;
+    private string password;
+
+    private void RegisterMethod()
+    {
+        NavigationManager.NavigateTo("/login");
+    }
+}
+

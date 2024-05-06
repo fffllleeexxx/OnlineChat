@@ -1,0 +1,42 @@
+﻿@page "/chat"
+@using System.Collections.Generic
+
+<h3>Chat Page</h3>
+
+<div class="chat-container">
+    <div class="message-list">
+        @foreach (var message in messages)
+        {
+            <div class="message">
+                <span class="message-sender">@message.Sender:</span>
+                <span class="message-text">@message.Text</span>
+            </div>
+        }
+    </div>
+    <div class="fixed-input">
+        <input type="text" @bind="newMessage" />
+        <button @onclick="SendMessage">Send</button>
+    </div>
+</div>
+
+@code {
+    private string newMessage;
+    private List<Message> messages = new List<Message>();
+
+    private void SendMessage()
+    {
+        if (!string.IsNullOrWhiteSpace(newMessage))
+        {
+            messages.Add(new Message { Sender = "You", Text = newMessage });
+            // Здесь можно добавить логику для отправки сообщения на сервер или другую обработку
+            newMessage = string.Empty; // Очищаем поле ввода после отправки
+        }
+    }
+
+    public class Message
+    {
+        public string Sender { get; set; }
+        public string Text { get; set; }
+    }
+}
+

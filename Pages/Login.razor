@@ -1,0 +1,37 @@
+﻿@page "/login"
+@inject NavigationManager NavigationManager
+
+<h3>Login Page</h3>
+
+<div>
+    <label for="loginUsername">Username:</label>
+    <input type="text" id="loginUsername" @bind="login" />
+</div>
+<div>
+    <label for="loginPassword">Password:</label>
+    <input type="password" id="loginPassword" @bind="password" />
+</div>
+<button @onclick="LoginMethod">Login</button>
+
+<p>Don't have an account? <a href="/registration">Register</a></p>
+
+@code {
+    private string login;
+    private string password;
+
+    private void LoginMethod()
+    {
+        if (!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(password))
+        {
+            NavigationManager.NavigateTo("/chat");
+        }
+        else
+        {
+
+            Console.WriteLine("Login failed. Please enter valid username and password.");
+        }
+    }
+}
+
+
+
